@@ -1,0 +1,112 @@
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col ">
+        <div class="text-center">
+          <!-- <img src="../../assets/images/lralogo.png" > -->
+          <h5>Login</h5>
+        </div>
+        <br>
+
+        <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" status="danger" role="alert">
+          <p class="alert-title"><b>Oh snap!</b></p>
+          <ul class="alert-message-list">
+            <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+          </ul>
+        </nb-alert>
+
+        <nb-alert *ngIf="showMessages.success && messages?.length && !submitted" status="success" role="alert">
+          <p class="alert-title"><b>Welcome!</b></p>
+          <ul class="alert-message-list">
+            <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+          </ul>
+        </nb-alert>
+
+        <form (ngSubmit)="onLoggedin()" #form="ngForm" aria-labelledby="title">
+          <div class="form-control-group">
+            <label class="label" for="input-username">Email Address:</label>
+            <input nbInput fullWidth [(ngModel)]="user.username" #username="ngModel" #myinput name="username"
+              id="input-username" placeholder="alphotex@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              autofocus fieldSize="small" status="primary"
+              [status]="username.dirty ? (username.invalid  ? 'danger' : 'success') : 'primary'"
+              [required]="getConfigValue('forms.validation.username.required')"
+              [attr.aria-invalid]="username.invalid && username.touched ? true : null">
+            <ng-container *ngIf="username.invalid && username.touched">
+              <p class="caption status-danger" *ngIf="username.errors?.required">
+                Email address is required!
+              </p>
+              <p class="caption status-danger" *ngIf="username.errors?.pattern">
+                Email address is not Valid!
+              </p>
+            </ng-container>
+          </div>
+          <div class="loading-container" dLoading [loading]="loading1" [showLoading]="showLoading"
+            [loadingTemplateRef]="loadingTemplateRef2"></div>
+          <div class="form-control-group">
+            <label class="label" for="input-password">Password:</label>
+            <input nbInput fullWidth [(ngModel)]="user.password" #password="ngModel" name="password" type="password"
+              id="input-password" placeholder="************" fieldSize="small" status="primary"
+              [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : 'primary'"
+              [required]="getConfigValue('forms.validation.password.required')"
+              [minlength]="getConfigValue('forms.validation.password.minLength')"
+              [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+              [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+            <ng-container *ngIf="password.invalid && password.touched ">
+              <p class="caption status-danger" *ngIf="password.errors?.required">
+                Password is required!
+              </p>
+              <p class="caption status-danger" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+                Password should contains
+                from {{ getConfigValue('forms.validation.password.minLength') }}
+                to {{ getConfigValue('forms.validation.password.maxLength') }}
+                characters
+              </p>
+            </ng-container>
+          </div>
+
+
+          <button nbButton fullWidth status="primary" [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">
+            Log In
+          </button>
+
+        </form>
+        <section class="another-action" aria-label="Register">
+          Forgot your Password? <a class="text-link" routerLink="../requestPass" style="color:#598BFF;">Reset
+            Password</a>
+        </section>
+        <br>
+        <br>
+      </div>
+      <br>
+      <br>
+
+      <ng-template #loadingTemplateRef2>
+        <div class="devui-infinity-loading">
+          <svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+              <linearGradient x1="-5.25355109%" y1="50%" x2="105.311016%" y2="50%"
+                id="devui-loading-infinity-linearGradient">
+                <stop stop-color="#1186FF" offset="0%"></stop>
+                <stop stop-color="#1186FF" offset="13.2017232%"></stop>
+                <stop stop-color="#FF5AB1" offset="87.0821974%"></stop>
+                <stop stop-color="#FF5AB1" offset="100%"></stop>
+              </linearGradient>
+            </defs>
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+              <path
+                d="M32.8273356,32.0651475 C38.9215537,24.0217158 44.200047,20 48.6627517,20 C55.4764195,20 61,25.5964615 61,32.4999677 C61,39.4036031 55.4764195,45 48.6627517,45 C44.258896,45 39.0606745,41.0837108 33.0680872,33.2510678 L31.8765067,31.6765806 C25.9073188,23.8921935 20.7275235,20 16.3372483,20 C9.52358054,20 4,25.5964615 4,32.4999677 C4,39.4036031 9.52358054,45 16.3372483,45 C20.7979128,45 26.0734732,40.9820956 32.164057,32.9462221 L32.8273356,32.0651475 Z"
+                id="infinity-bg" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke="#3B5885"
+                stroke-width="5" opacity="0.200000003"></path>
+              <path
+                d="M32.8273356,32.0651475 C38.9215537,24.0217158 44.200047,20 48.6627517,20 C55.4764195,20 61,25.5964615 61,32.4999677 C61,39.4036031 55.4764195,45 48.6627517,45 C44.258896,45 39.0606745,41.0837108 33.0680872,33.2510678 L31.8765067,31.6765806 C25.9073188,23.8921935 20.7275235,20 16.3372483,20 C9.52358054,20 4,25.5964615 4,32.4999677 C4,39.4036031 9.52358054,45 16.3372483,45 C20.7979128,45 26.0734732,40.9820956 32.164057,32.9462221 L32.8273356,32.0651475 Z"
+                stroke="url(#devui-loading-infinity-linearGradient)" stroke-width="5" id="infinity-outline"
+                stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></path>
+            </g>
+          </svg>
+        </div>
+      </ng-template>
+    </div>
+  </nb-card-body>
+</nb-card>

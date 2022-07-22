@@ -1,0 +1,82 @@
+@import "../@theme/styles/breakpoints";
+@import "../@theme/styles/themes";
+
+:host {
+  $auth-layout-padding: 0rem;
+
+  nb-card {
+    margin: 0;
+    height: calc(100vh - 2 * #{$auth-layout-padding});
+  }
+
+  .navigation .link {
+    display: inline-block;
+    text-decoration: none;
+
+    nb-icon {
+      font-size: 2rem;
+      vertical-align: middle;
+    }
+  }
+
+  .links nb-icon {
+    font-size: 2.5rem;
+  }
+
+  nb-card-body {
+    display:block;
+    width: 100%;
+  }
+  nb-card {
+    max-height: 100%;
+    height: 100%;
+  }
+
+  nb-auth-block {
+    margin: auto;
+  }
+ 
+
+  @include media-breakpoint-down(sm) {
+    nb-card {
+      border-radius: 0;
+      height: 100vh;
+    }
+  }
+
+  
+
+  ::ng-deep {
+    nb-layout .layout .layout-container .content .columns nb-layout-column {
+      padding: $auth-layout-padding;
+
+      @include media-breakpoint-down(sm) {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.dude {
+  background-image: url("../../assets/images/Backgroundabc.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: white;
+}
+.splash {
+  top: 0px;
+  left: 0px;
+  width: 302px;
+  height: 100px;
+}
+
+:host {
+  display: block;
+  // max-height: 30rem;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  overflow: auto; 
+}

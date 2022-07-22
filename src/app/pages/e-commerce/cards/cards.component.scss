@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+h6 {
+    font-size: 20px;
+    font-family: Poppins,medium;
+    color:white;
+}
+
+h3 {
+        font-size: 15px;
+        font-family: Poppins;
+        color:white;
+      
+        }
+.cards{
+    background-color:#3598DC;
+     border: 1px solid white; 
+
+}
+
+.dot1 {
+    height: 25px;
+    width: 25px;
+    background-color: #7AA3E5;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .dot2 {
+    height: 25px;
+    width: 25px;
+    background-color: #A8385D;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .dot3 {
+    height: 25px;
+    width: 25px;
+    background-color: #A27EA8;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .reports{
+    color: black;
+  }

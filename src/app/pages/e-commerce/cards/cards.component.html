@@ -1,0 +1,158 @@
+
+<div class="row">
+    <div class="col-sm-4 cards">
+        <a (click)="ViewOnboardedDevices()">
+                <div class="text-right" *ngIf="dashboardcards">
+                        <br>
+                        <br>
+                        <h6>{{dashboardcards[3]?.OnboardedDeviceModels | number}}</h6>
+                        <h3>Onboarded Device Models</h3>
+                </div>
+                <div class="text-nowrap">
+                        <img src="../../../../assets/img/Onboard Device.svg" width="50px" class="rounded" alt="...">
+                </div>
+        </a>
+    </div>
+
+    <div class="col-sm-4 cards">
+        <a (click)="CertifiedDevices()">
+                <div class="text-right" *ngIf="dashboardcards">
+                        <br>
+                        <br>
+                        <h6>{{dashboardcards[2]?.CertifiedDevices | number}}</h6>
+                        <h3>Certified Devices</h3>
+                </div>
+                <div class="text-nowrap">
+                        <img src="../../../../assets/img/Consignements.svg" width="50px" class="rounded" alt="...">
+                </div>
+        </a>        
+    </div>
+    <div class="col-sm-4 cards">
+        <a (click)="ViewRequistions()">
+                <div class="text-right" *ngIf="dashboardcards">
+                        <br>
+                        <br>
+                        <h6>{{dashboardcards[5]?.Requistion | number}}</h6>
+                        <h3>Requisitions</h3>
+                </div>
+                <div class="text-nowrap">
+                        <img src="../../../../assets/img/Requistions.svg" width="50px" class="rounded" alt="...">
+                </div>
+        </a>
+    </div>
+</div>
+<div class="row">
+        <div class="col-sm-4 cards">
+           <a (click)="ViewConsignments()">
+                <div class="text-right" *ngIf="dashboardcards">
+                        <br>
+                        <br>
+                        <h6>{{dashboardcards[0]?.Consignments | number}}</h6>
+                        <h3>Consignments</h3>
+                </div>
+                <div class="text-nowrap">
+                        <img src="../../../../assets/img/Consignements.svg" width="50px" class="rounded" alt="...">
+                </div>
+        </a>      
+    </div>
+
+    <div class="col-sm-4 cards">
+        <a (click)="ViewSuppliers()">
+                    <div class="text-right" *ngIf="dashboardcards">
+                            <br>
+                            <br>
+                            <h6>{{dashboardcards[1]?.Suppliers| number}}</h6>
+                            <h3>Suppliers</h3>
+                    </div>
+                    <div class="text-nowrap">
+                            <img src="../../../../assets/img/Requistions.svg" width="50px" class="rounded" alt="...">
+                    </div>
+        </a>    
+        </div>
+    
+       
+        <div class="col-sm-4 cards">
+          <a (click)="ViewShippedDevices()">
+                <div class="text-right" *ngIf="dashboardcards">
+                        <br>
+                        <br>
+                        <h6>{{dashboardcards[4]?.ShippedDevices | number}}</h6>
+                        <h3>Shipped Devices</h3>
+                </div>
+                <div class="text-nowrap">
+                        <img src="../../../../assets/img/Reports.svg" width="50px" class="rounded" alt="...">
+                </div>
+          </a>        
+    </div>
+
+
+</div>
+<br>
+<div class="row" style="background-color: #F5F5F5;" >
+    <h3   style="color: #BF0A30;">Performance Reports</h3>
+      </div>
+
+<!-- start chartjs  -->
+<div class="row" style="background-color: white;">
+    <!-- <div><h3 class="text-center" style="color: black;">Statistics</h3></div> -->
+  <br>
+  <br>
+  <br>
+  <div class="col-6" >
+    <!-- <canvas baseChart height="250"
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels" 
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType" 
+        [plugins]="lineChartPlugins">
+    </canvas> -->
+    <h3 class="reports">Device Class/Model Reports</h3>
+    <canvas baseChart height="200"
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [colors]="colorsbar"
+    [chartType]="barChartType">
+  </canvas>
+</div>
+
+
+        <div class="col-6" >
+        <h3 class="reports">Requistioned Devices</h3>
+          <canvas baseChart height="200"
+                      [options]="chartOptions"
+                      [data]="demodoughnutChartData"
+                      [labels]="doughnutChartLabels"
+                      [chartType]="doughnutChartType"
+                      [colors]="colors"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+        </div>
+ 
+</div>
+  <!-- end chart js -->
+
+  <!-- start chartjs  -->
+<!-- <div class="row" style="background-color: white;">
+      <br>
+      <br>
+      <br>
+    
+            <div class="col-6" >
+            <h3 class="reports">Tickets Reports</h3>
+              <canvas baseChart height="200"
+                          [options]="chartOptions"
+                          [data]="demodoughnutChartData"
+                          [labels]="doughnutChartLabels"
+                          [chartType]="doughnutChartType"
+                          [colors]="colors"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+            </div>
+     
+    </div> -->
+

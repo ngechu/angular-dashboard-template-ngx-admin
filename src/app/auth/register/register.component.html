@@ -1,0 +1,249 @@
+<nb-card>
+    <nb-card-body>
+<h1 id="title" class="title">Individual</h1>
+<!-- <div class="text-center">
+  <img src="../../../assets/images/covid-19a.png" width="100px" class="rounded" alt="...">
+</div> -->
+<nb-alert *ngIf="showMessages.error && errors?.length && !submitted" status="danger" role="alert">
+  <p class="alert-title"><b>Oh snap!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<nb-alert *ngIf="showMessages.success && messages?.length && !submitted" status="success" role="alert">
+  <p class="alert-title"><b>Hooray!</b></p>
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+  </ul>
+</nb-alert>
+
+<form (ngSubmit)="register()" #form="ngForm" aria-labelledby="title">
+<div class="dialog-body" fxLayout="row" fxLayoutGap="20px">
+  <div  fxFlex="50%" class="form-control-group">
+    <label class="label" for="input-name">First name:</label>
+    <input nbInput
+           [(ngModel)]="user.first_name"
+           #first_name="ngModel"
+           id="input-name"
+           name="first_name"
+           placeholder="First name"
+           autofocus
+           fullWidth
+           fieldSize="small"
+           status="primary"
+           required
+           [status]="first_name.dirty ? (first_name.invalid  ? 'danger' : 'success') : 'primary'"
+           [required]="getConfigValue('forms.validation.fullName.required')"
+           [minlength]="getConfigValue('forms.validation.fullName.minLength')"
+           [maxlength]="getConfigValue('forms.validation.fullName.maxLength')"
+           [attr.aria-invalid]="first_name.invalid && first_name.touched ? true : null">
+    <ng-container *ngIf="first_name.invalid && first_name.touched">
+      <p class="caption status-danger" *ngIf="first_name.errors?.required">
+        First Name is required!
+      </p>
+      <p class="caption status-danger" *ngIf="first_name.errors?.minlength || first_name.errors?.maxlength">
+        First Name should contain
+        from {{getConfigValue('forms.validation.fullName.minLength')}}
+        to {{getConfigValue('forms.validation.fullName.maxLength')}}
+        characters
+      </p>
+    </ng-container>
+  </div>
+  <div fxFlex="50%" class="form-control-group">
+    <label class="label" for="input-other-name">Other names:</label>
+    <input nbInput
+           [(ngModel)]="user.other_names"
+           #other_names="ngModel"
+           id="input-other-name"
+           name="other_names"
+           placeholder="Other names"
+           autofocus
+           fullWidth
+           fieldSize="small"
+           status="primary"
+           required
+           [status]="other_names.dirty ? (other_names.invalid  ? 'danger' : 'success') : 'primary'"
+           [required]="getConfigValue('forms.validation.fullName.required')"
+           [minlength]="getConfigValue('forms.validation.fullName.minLength')"
+           [maxlength]="getConfigValue('forms.validation.fullName.maxLength')"
+           [attr.aria-invalid]="other_names.invalid && other_names.touched ? true : null">
+    <ng-container *ngIf="other_names.invalid && other_names.touched">
+      <p class="caption status-danger" *ngIf="other_names.errors?.required">
+        Other Name is required!
+      </p>
+      <p class="caption status-danger" *ngIf="other_names.errors?.minlength || other_names.errors?.maxlength">
+        Other Name should contain
+        from {{getConfigValue('forms.validation.fullName.minLength')}}
+        to {{getConfigValue('forms.validation.fullName.maxLength')}}
+        characters
+      </p>
+    </ng-container>
+  </div>
+</div>
+
+<div class="dialog-body" fxLayout="row" fxLayoutGap="20px">
+  <div fxFlex="50%" class="form-control-group">
+    <label class="label" for="input-phonenumber">Phone Number:</label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.phonenumber"
+           #phonenumber="ngModel"
+           name="phonenumber"
+           id="input-phonenumber"
+           placeholder="Phone Number"
+           autofocus
+           fieldSize="small"
+           status="primary"
+           pattern="^[2][5][4][0-9]{9}$"
+           [status]="phonenumber.dirty ? (phonenumber.invalid  ? 'danger' : 'success') : 'primary'"
+           required
+           [attr.aria-invalid]="phonenumber.invalid && phonenumber.touched ? true : null"
+          >
+    <ng-container *ngIf="phonenumber.invalid && phonenumber.touched">
+      <p class="caption status-danger" *ngIf="phonenumber.errors?.required">
+        phonenumber is required!
+      </p>
+      <p class="caption status-danger" *ngIf="phonenumber.errors?.pattern">
+          phonenumber should start with 254****** (i.e 2547999999)!
+        </p>
+    </ng-container>
+  </div>
+  <div fxFlex="50%" class="form-control-group">
+    <label class="label" for="input-email">Email:</label>
+    <input  nbInput
+            fullWidth
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            name="email"
+            id="input-email"
+            fieldSize="small"
+           status="primary"
+            pattern=".+@.+\..+"
+            placeholder="Email address"
+            autofocus
+            [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : 'primary'"
+            [required]="getConfigValue('forms.validation.email.required')"
+            [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+      
+    <ng-container *ngIf="email.invalid && email.touched">
+      <p class="caption status-danger" *ngIf="email.errors?.required">
+        email is required!
+      </p>
+      <p class="caption status-danger" *ngIf="email.errors?.pattern">
+        Email should be the real one!
+      </p>
+    </ng-container>
+  </div>
+</div>
+
+<div class="dialog-body" fxLayout="row" fxLayoutGap="20px">
+    <div fxFlex="100%" class="form-control-group">
+     
+      <label class="label" for="input-phonenumber">National Id:</label>
+      <input nbInput
+             fullWidth
+             [(ngModel)]="user.national_id"
+             #national_id="ngModel"
+             name="national_id"
+             id="input-national_id"
+             placeholder="National Id"
+             fieldSize="small"
+           status="primary"
+            type="number"
+             autofocus
+             [status]="national_id.dirty ? (national_id.invalid  ? 'danger' : 'success') : 'primary'"
+             required
+             pattern="^[0-9]{8,8}$"
+             
+            >
+      <ng-container *ngIf="national_id.invalid && national_id.touched">
+        <p class="caption status-danger" *ngIf="national_id.errors?.required">
+          National id is required!
+        </p>
+         <p class="caption status-danger" *ngIf="national_id.errors.pattern">
+       National id must be at least 8 numbers long.
+      </p>
+      </ng-container>
+    </div>
+  </div>  
+
+<div class="dialog-body" fxLayout="row" fxLayoutGap="20px">
+  <div fxFlex="50%" class="form-control-group">
+      <label class="label" for="input-password">Password:</label>
+      <input nbInput
+             [(ngModel)]="user.password"
+             #password="ngModel"
+             type="password"
+             id="input-password"
+             name="password"
+             placeholder="Password"
+             fieldSize="small"
+           status="primary"
+             fullWidth
+             
+             [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : 'primary'"
+             [required]="getConfigValue('forms.validation.password.required')"
+             [minlength]="getConfigValue('forms.validation.password.minLength')"
+             [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+             [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+      <ng-container *ngIf="password.invalid && password.touched">
+        <p class="caption status-danger" *ngIf="password.errors?.required">
+          Password is required!
+        </p>
+        <p class="caption status-danger" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+          Password should contain
+          from {{ getConfigValue('forms.validation.password.minLength') }}
+          to {{ getConfigValue('forms.validation.password.maxLength') }}
+          characters
+        </p>
+      </ng-container>
+  </div>
+
+  <div fxFlex="50%" class="form-control-group">
+   
+
+    <label class="label" for="input-re-password">Confirm Password:</label>
+    <input nbInput
+           [(ngModel)]="user.confirmPassword"
+           #rePass="ngModel"
+           type="password"
+           id="input-re-password"
+           name="rePass"
+           placeholder="Confirm Password"
+           fieldSize="small"
+           status="primary"
+           fullWidth
+           validateEqual="password"
+           
+           [status]="rePass.dirty ? (rePass.invalid || password.value != rePass.value  ? 'danger' : 'success') : 'primary'"
+           [required]="getConfigValue('forms.validation.password.required')"
+           [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null">
+    <ng-container *ngIf="rePass.invalid && rePass.touched">
+      <p class="caption status-danger" *ngIf="rePass.errors?.required">
+        Password confirmation is required!
+      </p>
+      <p class="caption status-danger" *ngIf="password.value != rePass.value && !rePass.errors?.required">
+        Password does not match the confirm password.
+      </p>
+    </ng-container>
+  </div>
+</div>
+
+  <button nbButton
+          fullWidth
+          status="success"
+          size="large"
+          [disabled]="submitted || !form.valid"
+          [class.btn-pulse]="submitted">
+    Register
+  </button>
+</form>
+
+
+
+<section class="another-action" aria-label="Sign in">
+  Already have an account? <a class="text-link" routerLink="..auth/login">Log in</a>
+</section>
+</nb-card-body>
+</nb-card>

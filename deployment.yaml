@@ -1,0 +1,38 @@
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: miliki-manufacturer-nodeport
+#   namespace: qa
+# spec:
+#   selector:
+#     app: miliki-manufacturer
+#   type: NodePort
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       nodePort: 30011
+# ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: miliki-manufacturer
+  namespace: dev
+  labels:
+    app: miliki-manufacturer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: miliki-manufacturer
+  template:
+    metadata:
+      labels:
+        app: miliki-manufacturer
+    spec:
+      imagePullSecrets:
+        - name: pipeline-docker-registry
+      containers:
+        - name: miliki-manufacturer
+          image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          ports:
+            - containerPort: 80

@@ -1,0 +1,121 @@
+.save-button-button {
+    background-color: #ffffff;
+    color:black;
+    width: 278px;
+    height:69px;
+    margin-right: 1em;
+    text-decoration: none;
+}
+
+.search-button-button {
+    background-color: #3598DC;
+    color: #ffffff;
+    width: 278px;
+    margin-right: 1em;
+    text-decoration: none;
+}
+
+.dot {
+   
+    width: 146px;
+    height: 146px;
+    background: #373F54 0% 0% no-repeat padding-box;
+    border-radius: 50%;
+    display: inline-block;
+
+  }
+  .circle-content {
+    /* color: #fff; */
+    float: right;
+    line-height: 1;
+    margin-top: -0.5em;
+    padding-top: 22%;
+    text-align: center;
+    width: 100%;
+    
+  }
+
+  .circle-responsive {
+    background: #373F54;
+    border-radius: 50%;
+    height: 0;
+    padding-bottom: 50%;
+    width: 50%;
+  }
+  
+
+  .circle-responsive:hover {
+    background-color: #192135;
+    color: white;
+  }
+ .sub-title{
+  font: normal normal normal 22px/28px Poppins;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+  text-align: left;
+ }
+
+ .cards{
+ position: relative;
+ padding: 80px;
+}
+
+.rectangle1 {
+  height: 200px;
+  width: 100px;
+  background-color: white;
+  border: 15px solid cyan; 
+  padding: 50px;
+}
+.rectangle2 {
+  height: 200px;
+  width: 100px;
+  background-color: white;
+  border: 15px solid cyan; 
+  padding: 50px;
+}
+.rectangle3 {
+  height: 200px;
+  width: 100px;
+  background-color: white;
+  border: 15px solid cyan; 
+  padding: 50px;
+}
+
+.myflex {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  flex-wrap: wrap;
+//   flex-direction: row;
+
+}
+.myspan {
+    // display: flex;
+  flex-basis: 32%;
+  height:370px;
+//   width:fit-content;
+  background-color: white;
+  padding: 50px;
+  border: 2px solid #c5cee0; 
+}
+.myspan:hover {
+  background-color: #eff1f7;
+  color: white;
+}
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.custom-paragraph{
+   color: #0095ff;
+}
+.cutom-profile-icons{
+    font-size: 7em;
+    color: #0095ff;
+}
